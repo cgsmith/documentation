@@ -9,8 +9,8 @@ and invoicing.
 Settings
 ========
 
-To properly utilize multiple addresses in Odoo, go to :menuselection:`Sales app --> Configuration
---> Settings` and scroll down to the :guilabel:`Quotations & Orders` heading. Then, check the box
+To properly utilize multiple addresses in Odoo, go to :menuselection:`Accounting app --> Configuration
+--> Settings`, and scroll down to the :guilabel:`Customer Invoices` heading. Then, tick the checkbox
 next to :guilabel:`Customer Addresses`, and click :guilabel:`Save`.
 
 .. image:: different_addresses/customer-addresses-setting.png
