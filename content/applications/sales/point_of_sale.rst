@@ -111,6 +111,9 @@ To return and refund a product,
 .. image:: point_of_sale/refund.png
    :alt: refund view from a POS
 
+When the return payment is validated, Odoo generates the necessary credit note, referencing the
+original receipt or invoice, partially or fully canceling the document.
+
 .. note::
    - You can filter the **orders list** by :guilabel:`Receipt Number`, :guilabel:`Date` or
      :guilabel:`Customer` using the search bar.
