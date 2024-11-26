@@ -1,70 +1,64 @@
-================
-Shipping methods
-================
+========
+Shipping
+========
 
-Depending on your shipping strategy, you have the choice to either use your :ref:`own shipping
-methods <ecommerce-own-shipping>`, or use an integration with an :ref:`existing shipping provider
-<ecommerce-shipping-providers>`.
+Customers can choose their shipping method from the options you provide when shopping online at
+checkout.
 
-.. _ecommerce-own-shipping:
+You can offer :ref:`custom shipping options <ecommerce/shipping/custom-method>` (e.g., flat-rate
+shipping, free shipping, or :doc:`Sendcloud <../../../inventory_and_mrp/inventory/shipping_receiving/setup_configuration/sendcloud_shipping>`
+shipping carriers) or integrate with
+:ref:`external providers <ecommerce/shipping/external-provider>` that handle the delivery, fetch
+real-time rates, generate labels, and track shipments.
 
-.. seealso::
-   :doc:`../checkout_payment_shipping/checkout`
+.. _ecommerce/shipping/external-provider:
 
-Own shipping methods
-====================
+External provider integration
+=============================
 
-You can create your own custom shipping methods and define rules to compute shipping costs. To do
-so, go to :menuselection:`Website --> Configuration --> Shipping Methods`, and either select an
-**existing** shipping method, or :guilabel:`Create` one. When creating a shipping method, you can
-choose between :ref:`Fixed Price <inventory/shipping/fixed>`, :ref:`Based on Rules
-<inventory/shipping/rules>`, and :guilabel:`Pickup in store`.
+To handle product delivery, you can connect your system to third-party shipping carriers like FedEx,
+UPS, DHL, or local couriers. A shipping connector links your business platform to these providers,
+automating communication, tracking, and shipping processes.
 
-Pickup in store
----------------
+To enable a third-party shipping method, go to :menuselection:`Website --> Configuration -->
+Settings`, scroll to the :guilabel:`Shipping` section, select the shipping provider(s) you want,
+then :ref:`configure <ecommerce/shipping/configure>` them.
 
-:guilabel:`Pickup in store` must first be **enabled** in the settings (:menuselection:`Website -->
-Configuration --> Settings --> Shipping section)` by checking :guilabel:`On Site Payments &
-Picking`. Once enabled, you can select and :guilabel:`Customize Pickup Sites`. :guilabel:`Picking
-sites` can be made **website-specific**, but are by default available for *all* websites.
+.. _ecommerce/shipping/configure:
 
-.. seealso::
-   - :doc:`../../../inventory_and_mrp/inventory/shipping_receiving/setup_configuration`
-   - :doc:`../../../inventory_and_mrp/inventory/shipping_receiving/setup_configuration/invoicing`
-   - :doc:`../../../inventory_and_mrp/inventory/shipping_receiving/setup_configuration/multipack`
-   - :doc:`../../../inventory_and_mrp/inventory/shipping_receiving/setup_configuration/cancel`
+Configure existing shipping methods
+-----------------------------------
 
-.. _ecommerce-shipping-providers:
+Once installed, you can configure your shipping methods. Go to :menuselection:`Website -->
+Configuration --> eCommerce: Shipping Methods` to see the list of the :guilabel:`Delivery Methods`
+available and other information, such as the :guilabel:`Provider`, whether this method is
+:guilabel:`Published` on your eCommerce, in which :guilabel:`country` it is available, and more.
 
-Shipping providers
-==================
+Click an existing delivery method to
+:doc:`configure it <../../../inventory_and_mrp/inventory/shipping_receiving/setup_configuration/third_party_shipper>`.
 
-Another solution is to use one of the integrations with an existing shipping provider. The advantage
-of using an integration is that delivery costs are automatically computed based on each order as
-well as generating shipping labels.
+.. _ecommerce/shipping/custom-method:
 
+Custom shipping method
+======================
 
+To create a custom shipping method, go to :menuselection:`Website --> Configuration -->
+Shipping Methods`, click :guilabel:`New` and fill in the details. Your custom shipping method may
+or may not involve a provider. For example, for **flat-rate shipping** or **free shipping**, a
+provider is not required, while it is needed for the following cases:
 
-.. seealso::
-   - :doc:`../../../inventory_and_mrp/inventory/shipping_receiving/setup_configuration/third_party_shipper`
-   - :doc:`../../../inventory_and_mrp/inventory/shipping_receiving/setup_configuration/ups_credentials`
-   - :doc:`../../../inventory_and_mrp/inventory/shipping_receiving/setup_configuration/dhl_credentials`
-   - :doc:`../../../inventory_and_mrp/inventory/shipping_receiving/setup_configuration/labels`
+#. You want carriers different than the ones available, :doc:`Sendcloud <../../../inventory_and_mrp/inventory/shipping_receiving/setup_configuration/sendcloud_shipping>`,
+   for example, allows you to use DHL but to use it, you need to create a new shipping method yourself.
 
-Website availability
-====================
+#. You want the same shipping method that already exists but with different rules, such as
+   "orders above 100 euros will be free".
 
-Shipping methods can be made available on **specific** websites *only*, if desired. To do so, go to
-:menuselection:`Website --> Configuration --> Settings --> Shipping Methods`, and select the desired
-**shipping method**. In the :guilabel:`Website` field, set the website you want the shipping method
-to be restrained to. Leave the field **empty** for the method to be available on *all* websites.
+#. You want a shipping method dedicated to one specific website.
 
-Delivery method at checkout
-===========================
+.. tip::
 
-Customers can choose the shipping method at the end of the checkout process, at the
-:guilabel:`Confirm Order` step.
-
-.. image:: shipping/shipping-checkout.png
-   :align: center
-   :alt: Delivery method choice at checkout
+   Shipping methods can be made available on **specific** websites *only*, if desired. To do so, go
+   to :menuselection:`Website --> Configuration --> Settings --> Shipping Methods`, and select the
+   desired **shipping method**. In the :guilabel:`Website` field, set the website you want the
+   shipping method to be restrained to. Leave the field **empty** for the method to be available on
+   *all* websites.
