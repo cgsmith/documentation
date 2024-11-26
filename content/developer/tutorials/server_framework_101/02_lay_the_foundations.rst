@@ -74,10 +74,6 @@ represented as instances of the model's class, allowing developers to interact w
 object-oriented programming techniques. For example, in a real estate application using a tenant
 model, each specific tenant (such as "Bafien Carpink") would be a separate record of that model.
 
-.. seealso::
-   For the full list of fields and their attributes, see the :ref:`reference documentation
-   <reference/orm/fields>`.
-
 .. example::
    Before we dive into creating our own models, let's take a look at a basic example of a model that
    represents storable products. It defines a `product` model with the `Product` class inheriting
@@ -115,6 +111,10 @@ model, each specific tenant (such as "Bafien Carpink") would be a separate recor
         of the attribute name.
       - `category` is a `Selection` field with predefined options, each defined by a technical code
         and a corresponding label. Since it is required, a default value is provided.
+
+.. seealso::
+   For the full list of fields and their attributes, see the :ref:`reference documentation
+   <reference/orm/fields>`.
 
 Building on these new concepts, let's now create the first model for our real estate app. We'll
 create a model with some fields to represent real estate properties and their characteristics.
@@ -343,9 +343,6 @@ The most common data operation is creating new records through the `record` and 
 elements, but other operations exist, such as `delete`, which deletes previously created records, or
 even `function`, which allows executing arbitrary code.
 
-.. seealso::
-   :doc:`Reference documentation for XML data files <../../reference/backend/data>`
-
 Some data operations require their data elements to be uniquely identified by the system. This is
 achieved by means of the `id` attribute, also known as the **XML ID** or **external identifier**. It
 provides a way for other elements to reference it with the `ref` attribute and links data elements
@@ -386,6 +383,9 @@ created from a data file so that records can be referenced by their full XML ID 
       - Non-required fields can be omitted.
       - The `ref` attribute is used to reference other records by their XML ID and use their record
         ID as value.
+
+.. seealso::
+   :doc:`Reference documentation for XML data files <../../reference/backend/data>`
 
 Let's now load some default real estate properties in our database.
 
@@ -484,9 +484,6 @@ In addition to XML data files, the server framework allows loading data files in
 format is often more convenient for describing records with simple field values belonging to the
 same model. It also loads faster, making it the go-to format when performance matters most.
 
-.. seealso::
-   :ref:`Reference documentation for CSV data files <reference/data/csvdatafiles>`
-
 .. example::
    See below for an example of how a subset of `country states can be loaded into Odoo
    <{GITHUB_PATH}/odoo/addons/base/data/res.country.state.csv>`_.
@@ -517,6 +514,9 @@ same model. It also loads faster, making it the go-to format when performance ma
       - The `:id` suffix is used to reference other records by their XML ID and use their record ID
         as value.
       - Each subsequent line describes one new record.
+
+.. seealso::
+   :ref:`Reference documentation for CSV data files <reference/data/csvdatafiles>`
 
 In business applications like Odoo, one of the first questions to consider is who can access the
 data. By default, access to newly created models is restricted until it is explicitly granted.
