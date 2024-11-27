@@ -10,8 +10,8 @@ of our real estate application.
 
 .. _tutorials/server_framework_101/module_structure:
 
-Module structure
-================
+Organize your module structure
+==============================
 
 As our `real_estate` module grows, you may notice that we've already created a dozen files for just
 one model, along with its menu items, actions and views. With more models on the horizon, our module
@@ -193,8 +193,8 @@ structure guidelines** that offer several benefits:
 
 .. _tutorials/server_framework_101/many2one:
 
-Many-to-one
-===========
+Many-to-one relationships
+=========================
 
 As promised at the end of :doc:`the previous chapter <03_build_user_interface>`, we'll now expand
 our app's capabilities by adding new models to manage additional information. This expansion
@@ -578,8 +578,8 @@ of the property and the salesperson managing the property.
 
 .. _tutorials/server_framework_101/one2many:
 
-One-to-many fields
-==================
+One-to-many relationships
+=========================
 
 After exploring how to connect multiple records to a single one with many-to-one relationships,
 let's consider their counterparts: **one-to-many relationships**. These relationships represent the
@@ -774,8 +774,8 @@ to a list of offers received from potential buyers.
 
 .. _tutorials/server_framework_101/many2many:
 
-Many-to-many
-============
+Many-to-many relationships
+==========================
 
 After the many-to-one and one-to-many relationships, let's consider a more complex use case:
 **many-to-many relationships**. These relationships enable *multiple* records in one model to be
