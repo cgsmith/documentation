@@ -578,6 +578,8 @@ You can then:
    - :ref:`Assets Bundle <reference/assets_bundle>`
    - :ref:`testing/python`
 
+.. _testing/javascript/test:
+
 Javascript
 ~~~~~~~~~~
 
@@ -588,7 +590,6 @@ Javascript
       import tour from 'web_tour.tour';
       tour.register('rental_product_configurator_tour', {
           url: '/web',  // Here, you can specify any other starting url
-          test: true,
       }, [
           // Your sequence of steps
       ]);
@@ -730,14 +731,113 @@ To start a tour from a python test, make the class inherit from
 
    def test_your_test(self):
        # Optional Setup
-       self.start_tour("/web", 'your_module.your_tour_name', login="admin")
+       self.start_tour("/web", "your_tour_name", login="admin")
        # Optional verifications
+
+Writing an onboarding tour
+--------------------------
+
+The main purpose of the onboarding tours is to guide the user. They can be started with the
+checkbox in the user menu that will run all the onboarding tours in their sequence order.
+
+.. image:: testing/tour_user_menu.png
+   :align: center
+
+Structure
+~~~~~~~~~
+
+To write an onboarding tour for `your_module`, start with creating the required files:
+
+.. code-block:: text
+
+    your_module
+    ├── ...
+    ├── data
+    |   └── your_tour.xml
+    ├── static
+    |   └── src
+    |       └── js
+    |           └── tours
+    |               └── your_tour.js
+    └── __manifest__.py
+
+You can then update :file:`__manifest__.py` to add :file:`your_tour.js` in the assets and :file:`your_tour.xml` in the data.
+
+  .. code-block:: python
+
+     'data': [
+        'data/your_tour.xml',
+     ],
+     'assets': {
+         'web.assets_backend': [
+             'your_module/static/src/js/tours/your_tour.js',
+         ],
+     },
+
+Javascript
+~~~~~~~~~~
+
+The javascript part is the same as for the test tour.
+
+.. seealso::
+   - :ref:`testing/javascript/test`
+
+XML
+~~~
+
+When you have your tour in the javascript registry, you can create a record `web_tour.tour` in the xml, like that:
+
+  .. code-block:: xml
+
+      <?xml version="1.0" encoding="utf-8"?>
+      <odoo>
+          <record id="your_tour" model="web_tour.tour">
+              <field name="name">your_tour</field>
+              <field name="sequence">10</field>
+              <field name="rainbow_man_message">Congrats, that was a great tour</field>
+          </record>
+      </odoo>
+
+- **name**: Required, the name must be the same as the one in the
+  javascript registry.
+- **sequence**: Optional, will determine the order to execute the
+  onboarding tours, If no ``sequence``, has a default value of 1000.
+- **url**: Optional, the url where to start the tour. If no ``url``,
+  take the url from the registry.
+- **rainbow_man_message**: Optional, will show the message in the
+  rainbow man effect at the completion of the tour. If no ``rainbow_man_message``,
+  there is a default value. If you do not want a rainbow_man effect, then specify
+  the field and write nothing as value.
+
+Running onboarding tour
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Like said previously, you can activate the onboarding tour with the checkbox in user menu,
+but you can also run specific ones through the menu: ``Settings/Technical/User Interface/Tours``.
+In this view you'll get all the onboarding tours and you can execute them by clicking on `onboarding` or `testing`.
+
+.. image:: testing/tours_view.png
+   :align: center
+
+- **Onboarding**: will execute the tour in interactive mode. That means the tour will show what to do and
+  wait for interactions from the user.
+- **Testing**: will execute the tour automatically. That means the tour will be executing all the step in
+  front of the user.
+
+Tour recorder
+~~~~~~~~~~~~~
+
+You can also create tour easily with the tour recorder, that will popup by clicking on `Record` on the
+onboarding tours view. When started, this tool will record all your interactions in Odoo.
+
+The created tours are listed in the onboarding tours view as `custom`. these tours can also
+be exported to javascript file, ready to be put in your module.
 
 Debugging tips
 --------------
 
-Observing tours in a browser
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Observing test tours in a browser
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 There are three ways with different tradeoffs:
 
@@ -748,7 +848,7 @@ When running a tour locally via the test suite, the ``watch=True``
 parameter can be added to the ``browser_js`` or ``start_tour``
 call::
 
-    self.start_tour("/web", code, watch=True)
+    self.start_tour("/web", "your_tour_name", watch=True)
 
 This will automatically open a Chrome window with the tour being
 run inside it.
@@ -768,7 +868,7 @@ When running a tour locally via the test suite, the ``debug=True``
 parameter can be added to the ``browser_js`` or ``start_tour``
 call::
 
-    self.start_tour("/web", code, debug=True)
+    self.start_tour("/web", "your_tour_name", debug=True)
 
 This will automatically open a fullscreen Chrome window with opened
 devtools and a debugger breakpoint set at the start of the tour. The tour
@@ -782,22 +882,18 @@ debugger stops on the exception.
   - only works locally
   - only works if the test / tour can run correctly locally
 
-Run via browser
-***************
+Run test tour via browser
+*************************
 
-Tours can also be launched via the browser UI, either by calling
+Test tours can also be launched via the browser UI by calling
 
 .. code-block:: javascript
 
-    odoo.startTour(tour_name);
+    odoo.startTour("tour_name");
 
 in the javascript console, or by enabling :ref:`tests mode
 <frontend/framework/tests_debug_mode>` by setting ``?debug=tests`` in
-the URL, then selecting **Start Tour** in the debug menu and picking a
-tour:
-
-.. image:: testing/tours.png
-   :align: center
+the URL.
 
 **Advantages**
   - easier to run
