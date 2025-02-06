@@ -2,6 +2,8 @@
 Neutralized database
 ====================
 
+:ref:_reference/administration/neutralized-database
+
 A neutralized database is a non-production database on which several parameters are deactivated.
 This enables one to carry out tests without the risk of launching specific automated processes that
 could impact production data (e.g., sending emails to customers). Live access is removed and
