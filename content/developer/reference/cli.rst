@@ -708,7 +708,9 @@ The Odoo command line allows for neutralizing a database as well. The command mu
 option.
 
 .. code-block:: console
+
    $ odoo-bin --addons-path <PATH,...>  neutralize -d <database>
+
 .. option:: -d <database, --database <database>
 
    Specify the database name that you would like to neutralize.
@@ -720,8 +722,7 @@ option.
 
 
 .. seealso::
-
-   :ref:`_reference/administration/neutralized-database`
+   :doc:`Neutralized Database <../../administration/neutralized_database>`
 
 
 Scaffolding
